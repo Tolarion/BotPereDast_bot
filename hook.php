@@ -14,10 +14,10 @@ try {
         if (in_array($message->getChat()->getId(), $allowed) or in_array($message->getFrom()->getId(), $allowed)) $a = 1;
         
         if ((strlen($message->getText())>6) && ($message->getText()!='/call@BotPereDast_bot') && ($message->getChat()->getId() != $resendto)) {
-        if ($a == 1) {
-            $bot->sendMessage($resendto, str_replace('/call ', 'Вам тут из соседнего чатика @'. $message->getFrom()->getUsername() .' просит передать следующее:'.PHP_EOL,  $message->getText()));
-            $bot->sendMessage($message->getChat()->getId(), 'Передано!', null, false, $message->getMessageId());
-        }
+		if ($a == 1) {
+		    $bot->sendMessage($resendto, str_replace('/call ', 'Вам тут из соседнего чатика @'. $message->getFrom()->getUsername() .' просит передать следующее:'.PHP_EOL,  $message->getText()));
+		    $bot->sendMessage($message->getChat()->getId(), 'Передано!', null, false, $message->getMessageId());
+		}
         else $bot->sendMessage($message->getChat()->getId(), 'Бот не авторизован пересылать сообщения из этого канала.');
         }
 
